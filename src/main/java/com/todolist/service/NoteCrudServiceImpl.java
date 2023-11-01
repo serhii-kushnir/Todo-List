@@ -5,9 +5,9 @@ import com.todolist.entity.Note;
 import java.util.List;
 
 public class NoteCrudServiceImpl implements NoteService {
-    NoteService noteService;
+    NoteServiceImpl noteService;
 
-    public NoteCrudServiceImpl(NoteService noteService) {
+    public NoteCrudServiceImpl(NoteServiceImpl noteService) {
         this.noteService = noteService;
     }
 
