@@ -1,5 +1,6 @@
 package com.todolist.entity;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
 @Service
@@ -16,49 +15,41 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public List<Note> listAll() {
-        return new ArrayList<>(notes);
+        return notes;
     }
 
     @Override
     public Note add(final Note note) {
-        note.setId(random.nextLong());
+        note.setId(random.nextLong(1, 20));
         notes.add(note);
         return note;
     }
 
     @Override
     public void deleteById(final Long id) {
-        Note noteToRemove = null;
-        for (Note note : notes) {
-            if (Objects.equals(note.getId(), id)) {
-                noteToRemove = note;
-                break;
-            }
-        }
-
-        if (noteToRemove != null) {
-            notes.remove(noteToRemove);
+        Note note = getById(id);
+        if (note != null) {
+            notes.remove(note);
         } else {
-            throw new NoteNotFoundException(ERROR_MESSAGE + id);
+            throw new IllegalArgumentException();
         }
     }
 
     @Override
     public void update(final Note note) {
-        for (Note existingNote : notes) {
-            if (Objects.equals(existingNote.getId(), note.getId())) {
-                existingNote.setTitle(note.getTitle());
-                existingNote.setContent(note.getContent());
-            } else {
-                throw new NoteNotFoundException(ERROR_MESSAGE + note.getId());
-            }
+        Note existingNote = getById(note.getId());
+        if(existingNote != null){
+            existingNote.setTitle(note.getTitle());
+            existingNote.setContent(note.getContent());
+        } else {
+            throw new IllegalArgumentException();
         }
     }
 
     @Override
     public Note getById(final Long id) {
         for (Note note : notes) {
-            if (Objects.equals(note.getId(), id)) {
+            if (note.getId().equals(id)) {
                 return note;
             }
         }
