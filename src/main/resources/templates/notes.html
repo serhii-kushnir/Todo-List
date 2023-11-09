@@ -10,6 +10,10 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <style>
+        .card {
+            --bs-card-border-width: none;
+        }
+
         .table {
             display: table;
             width: 100%;
@@ -31,14 +35,15 @@
 
         .table-header {
             font-weight: bold;
-            background-color: #f2f2f2;
+            background-color: #e9e9e9;
         }
     </style>
 </head>
 <body>
 <div class="container mt-3">
     <div class="card">
-        <div class="card-header" th:text="'Note: ' + ${notes.size}">
+        <div class="card-header">
+            <div class="h3" th:text="'Notes: ' + ${notes.size}"></div>
         </div>
         <a href="/note/create" class="btn btn-primary">Create Note</a>
         <div class="card-body">
@@ -66,9 +71,7 @@
                     </div>
                 </div>
             </div>
-
-                <footer>@2023 <a href="https://github.com/serhii-kushnir">Serhii Kushnir</a> | <a
-                        href="https://www.linkedin.com/in/serhii-kushnir1611/">LinkedIn</a></footer>
+                <footer>@2023 <a href="https://github.com/serhii-kushnir">Serhii Kushnir</a> | <a href="https://www.linkedin.com/in/serhii-kushnir1611/">LinkedIn</a></footer>
         </div>
     </div>
 </div>

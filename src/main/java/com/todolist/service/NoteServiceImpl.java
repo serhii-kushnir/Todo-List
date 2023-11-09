@@ -8,10 +8,9 @@ import java.util.List;
 import java.util.Random;
 
 @Service
-public class NoteServiceImpl implements NoteService {
+public final class NoteServiceImpl implements NoteService {
     private final List<Note> notes = new ArrayList<>();
     private final Random random = new Random();
-    private static final String ERROR_MESSAGE = "Note not found with id: ";
 
     @Override
     public List<Note> listAll() {
@@ -19,10 +18,9 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public Note add(final Note note) {
+    public void add(final Note note) {
         note.setId(random.nextLong(1, 20));
         notes.add(note);
-        return note;
     }
 
     @Override
@@ -31,7 +29,7 @@ public class NoteServiceImpl implements NoteService {
         if (note != null) {
             notes.remove(note);
         } else {
-            throw new IllegalArgumentException();
+            throw new NoteNotFoundException("Note not delete with id: " + id);
         }
     }
 
@@ -42,7 +40,7 @@ public class NoteServiceImpl implements NoteService {
             existingNote.setTitle(note.getTitle());
             existingNote.setContent(note.getContent());
         } else {
-            throw new IllegalArgumentException();
+            throw new NoteNotFoundException("Note not update with id: " + note.getId());
         }
     }
 
@@ -54,6 +52,6 @@ public class NoteServiceImpl implements NoteService {
             }
         }
 
-        throw new NoteNotFoundException(ERROR_MESSAGE + id);
+        throw new NoteNotFoundException("Note not found with id: " + id);
     }
 }
