@@ -8,7 +8,7 @@ public interface NoteService {
 
     List<Note> listAll();
 
-    Note add(final Note note);
+    void add(final Note note);
 
     void deleteById(final Long id);
 
