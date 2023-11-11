@@ -2,17 +2,31 @@ package com.todolist.service;
 
 import com.todolist.entity.Note;
 
+import lombok.RequiredArgsConstructor;
+
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
-public interface NoteService {
 
-    List<Note> listAll();
+@RequiredArgsConstructor
+@Service
+public final class NoteService {
+    private final NoteRepository noteRepository;
 
-    void add(final Note note);
+    public List<Note> listAll() {
+        return noteRepository.findAll();
+    }
 
-    void deleteById(final Long id);
+    public void saveAndUpdate(final Note note) {
+        noteRepository.save(note);
+    }
 
-    void update(final Note note);
+    public void deleteById(final Long id) {
+        noteRepository.deleteById(id);
+    }
 
-    Note getById(final Long id);
+    public Note findById(final Long id) {
+        return noteRepository.findById(id).orElse(null);
+    }
 }

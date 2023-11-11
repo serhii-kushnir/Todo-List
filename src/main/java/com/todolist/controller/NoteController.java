@@ -1,7 +1,7 @@
 package com.todolist.controller;
 
 import com.todolist.entity.Note;
-import com.todolist.service.NoteServiceImpl;
+import com.todolist.service.NoteService;
 
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/note")
 @RequiredArgsConstructor
 public final class NoteController {
-    private final NoteServiceImpl noteService;
+    private final NoteService noteService;
     private static final String BASE_REDIRECT = "redirect:/note/list";
 
     @GetMapping("/list")
@@ -33,21 +33,21 @@ public final class NoteController {
     }
 
     @PostMapping("/create")
-    public String saveCreatingNote(final @ModelAttribute("note") Note note) {
-        noteService.add(note);
+    public String creatingNote(final @ModelAttribute("note") Note note) {
+        noteService.saveAndUpdate(note);
         return BASE_REDIRECT;
     }
 
     @GetMapping("/edit")
     public String editNoteById(final @RequestParam("id") Long id, final Model model) {
-        final Note note = noteService.getById(id);
+        final Note note = noteService.findById(id);
         model.addAttribute("note", note);
         return "edit-note";
     }
 
     @PostMapping("/edit")
     public String saveEditingNoteById(final @ModelAttribute("note") Note note) {
-        noteService.update(note);
+        noteService.saveAndUpdate(note);
         return BASE_REDIRECT;
     }
 
