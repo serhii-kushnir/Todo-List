@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 @RequiredArgsConstructor
 @Service
 public final class NoteService {
@@ -19,14 +18,26 @@ public final class NoteService {
     }
 
     public void saveAndUpdate(final Note note) {
-        noteRepository.save(note);
+        if (note != null) {
+            noteRepository.save(note);
+        } else {
+            throw new IllegalArgumentException("Note cannot be null");
+        }
     }
 
     public void deleteById(final Long id) {
-        noteRepository.deleteById(id);
+        if (id != null) {
+            noteRepository.deleteById(id);
+        } else {
+            throw new IllegalArgumentException("ID cannot be null");
+        }
     }
 
     public Note findById(final Long id) {
         return noteRepository.findById(id).orElse(null);
+    }
+
+    public List<Note> searchNotes(final String search) {
+        return noteRepository.searchNotes(search);
     }
 }
