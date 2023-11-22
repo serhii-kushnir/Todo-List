@@ -1,0 +1,7 @@
+CREATE TABLE `users` (
+    `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `username` VARCHAR(100) NOT NULL,
+    `password` VARCHAR(100) NOT NULL,
+    `enable` BOOLEAN DEFAULT TRUE,
+    `role` VARCHAR(50) DEFAULT 'USER' NOT NULL
+ );
