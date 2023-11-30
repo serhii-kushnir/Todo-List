@@ -1,4 +1,4 @@
-# Module-Spring Boot-MVC-Data-Security-HW
+# Module-Spring Boot-MVC-Data-Security-Rest API-HW
 
 ![Untitled](https://github.com/serhii-kushnir/Todo-List/assets/127629681/3d75302b-3d08-4c2e-902b-65ea9a3bbd23)
 
