@@ -23,11 +23,11 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfig {
     private final DataSource dataSource;
 
-    private static final String BY_USERNAME_QUERY ="SELECT `username`, `password`, `enable` FROM `users` WHERE `username`=?";
-    private static final String BY_USERNAME_ROLE_QUERY ="SELECT `username`, `role` FROM `users` WHERE `username`=?";
+    private static final String BY_USERNAME_QUERY = "SELECT `username`, `password`, `enable` FROM `users` WHERE `username`=?";
+    private static final String BY_USERNAME_ROLE_QUERY = "SELECT `username`, `role` FROM `users` WHERE `username`=?";
 
     @Autowired
-    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+    public void configAuthentication(final AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .usersByUsernameQuery(BY_USERNAME_QUERY)
@@ -36,7 +36,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().authenticated()
