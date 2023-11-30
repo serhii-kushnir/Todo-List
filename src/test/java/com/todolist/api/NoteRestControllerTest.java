@@ -27,8 +27,8 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 class NoteRestControllerTest {
 
@@ -90,7 +90,7 @@ class NoteRestControllerTest {
     @Test
     void postEditNoteById() throws Exception {
         Long noteId = 1L;
-        Note existingNote = mock(Note.class); // Mock the Note class
+        Note existingNote = mock(Note.class);
         Note updatedNote = new Note();
         when(noteService.findById(noteId)).thenReturn(existingNote);
 
