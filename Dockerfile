@@ -8,3 +8,4 @@ ENV MYSQL_DATABASE todo
 
 #docker build -t sk/mysql .
 #docker run --name mysql -d -p 3366:3306 sk/mysql
+#docker start container mysql
