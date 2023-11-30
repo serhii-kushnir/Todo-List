@@ -1,4 +1,4 @@
-package com.todolist.controller;
+package com.todolist.mvc;
 
 import com.todolist.entity.Note;
 import com.todolist.service.NoteService;
@@ -41,8 +41,8 @@ public final class NoteController {
 
     @GetMapping("/create")
     public String createNote(final Model model) {
-       model.addAttribute("note", new Note());
-       return TEMPLATE_CREATE_NOTE;
+        model.addAttribute("note", new Note());
+        return TEMPLATE_CREATE_NOTE;
     }
 
     @PostMapping("/create")

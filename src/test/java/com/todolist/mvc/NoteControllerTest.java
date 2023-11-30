@@ -1,4 +1,4 @@
-package com.todolist.controller;
+package com.todolist.mvc;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

@@ -12,16 +12,27 @@ import java.util.List;
 @Service
 public final class NoteService {
     private final NoteRepository noteRepository;
+    private static final int MAX_TITLE_LENGTH = 100;
+    private static final int MAX_CONTENT_LENGTH = 255;
 
     public List<Note> listAll() {
         return noteRepository.findAll();
     }
 
+
     public void saveAndUpdate(final Note note) {
-        if (note != null) {
-            noteRepository.save(note);
+        if (note == null) {
+            exception("Note cannot be null");
+        }
+
+        if (note.getTitle().length() > MAX_TITLE_LENGTH || note.getTitle().isEmpty()) {
+            exception("InvalidTitleLength");
+        }
+
+        if (note.getContent().length() > MAX_CONTENT_LENGTH || note.getContent().isEmpty()) {
+            exception("InvalidContentLength");
         } else {
-            throw new IllegalArgumentException("Note cannot be null");
+            noteRepository.save(note);
         }
     }
 
@@ -29,7 +40,7 @@ public final class NoteService {
         if (id != null) {
             noteRepository.deleteById(id);
         } else {
-            throw new IllegalArgumentException("ID cannot be null");
+            exception("ID cannot be null");
         }
     }
 
@@ -39,5 +50,9 @@ public final class NoteService {
 
     public List<Note> searchNotes(final String search) {
         return noteRepository.searchNotes(search);
+    }
+
+    private static void exception(final String msg) {
+        throw new IllegalArgumentException(msg);
     }
 }
