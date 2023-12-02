@@ -6,3 +6,4 @@
 ![image](https://github.com/serhii-kushnir/Todo-List/assets/127629681/785bedda-37f2-4464-a963-1b0c71a34cb8)
 
 ![image](https://github.com/serhii-kushnir/Todo-List/assets/127629681/2fb1b813-6970-4b6c-9eb6-f34ab8cbdbd2)
+
