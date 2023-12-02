@@ -1,0 +1,14 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3366/todo
+    username: user
+    password: user
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  security:
+    user:
+      name: user
+      password: default
