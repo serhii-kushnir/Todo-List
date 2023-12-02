@@ -55,4 +55,3 @@ public final class NoteRestController {
         noteService.deleteById(id);
     }
 }
-
